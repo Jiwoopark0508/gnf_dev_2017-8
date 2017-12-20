@@ -34,8 +34,7 @@
                         <td class="hidden-sm-and-down">{{item.etc}}</td>
                     </tr>
                 </tbody>
-            </table>
-                    
+            </table>   
         </v-card>
     </div>
 </template>
