@@ -1,5 +1,9 @@
 <template>
-    <div>
+<v-container fluid fill-height>
+    <v-layout
+        justify-center
+    >
+        <v-flex xs12>
         <v-card class="pa-1">
             <v-card-text v-html="text">
                 {{text}}
@@ -25,7 +29,9 @@
                 </template>
             </v-data-table>
         </v-card>
-    </div>
+     </v-flex>
+    </v-layout>
+</v-container>
 </template>
 
 <script>

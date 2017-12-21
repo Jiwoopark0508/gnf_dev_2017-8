@@ -1,5 +1,6 @@
 import Home from './components/Home.vue'
 import DataViz from './components/DataViz.vue'
+import Layout from './components/Layout.vue'
 
 export default [
     {
@@ -11,5 +12,10 @@ export default [
         path: '/dataviz',
         name: 'dataviz',
         component: DataViz
+    },
+    {
+        path: '/layout',
+        name: 'layout',
+        component: Layout
     }
 ]

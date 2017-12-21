@@ -1,43 +1,52 @@
 <template>
-    <div>
-        <v-card dark class="pa-1">
-            <v-card-text v-html="text">
-                {{text}}
-            </v-card-text>
-        </v-card>
+<v-container grid-list-xl fluid fill-height>
+    <v-layout
+        row wrap
+    >
+        <v-flex xs12>
+            <v-card dark class="pa-1">
+                <v-card-text v-html="text">
+                    {{text}}
+                </v-card-text>
+            </v-card>
+        </v-flex>
         <br/>
-        <v-card >
-            <v-toolbar color="indigo" dark app>
-                <v-toolbar-title>Workshop Schedule</v-toolbar-title>
-            </v-toolbar>
-            <table class="pa-3 bordered">
-                <thead>
-                    <tr >
-                        <th v-for="head in headers" :key="head.id"
-                            :class='{"hidden-sm-and-down" : head.isHidden}'
-                        >
-                            {{head.text}}
-                        </th>
-                    </tr>
-                </thead>
+        <v-flex xs12>
+            <v-card >
+                <v-toolbar color="indigo" dark app>
+                    <v-toolbar-title>Workshop Schedule</v-toolbar-title>
+                </v-toolbar>
+                <table class="pa-3 bordered">
+                    <thead>
+                        <tr >
+                            <th v-for="head in headers" :key="head.id"
+                                :class='{"hidden-sm-and-down" : head.isHidden}'
+                            >
+                                {{head.text}}
+                            </th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    <tr v-for="item in items" :key="item.id"
-                        :class="{odd : item.dateid % 2 != 0 }">
-                        <td v-if="item.isFirst" :rowspan="count_array(item)">
-                            {{item.date}} 
-                        </td>
-                        <td>{{item.time}}</td>
-                        <td>{{item.program}}</td>
-                        <td>{{item.speaker}}</td>
-                        <td class="hidden-sm-and-down">{{item.location}}</td>
-                        <td class="hidden-sm-and-down">{{item.etc}}</td>
-                    </tr>
-                </tbody>
-            </table>
-                    
-        </v-card>
-    </div>
+                    <tbody>
+                        <tr v-for="item in items" :key="item.id"
+                            :class="{odd : item.dateid % 2 != 0 }">
+                            <td v-if="item.isFirst" :rowspan="count_array(item)">
+                                {{item.date}} 
+                            </td>
+                            <td>{{item.time}}</td>
+                            <td>{{item.program}}</td>
+                            <td>{{item.speaker}}</td>
+                            <td class="hidden-sm-and-down">{{item.location}}</td>
+                            <td class="hidden-sm-and-down">{{item.etc}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                        
+            </v-card>
+        
+        </v-flex>        
+    </v-layout>
+</v-container>
 </template>
 
 <script>

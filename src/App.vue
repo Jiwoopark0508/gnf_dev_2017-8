@@ -14,6 +14,11 @@
           <v-icon>insert_chart</v-icon>
         </v-btn>
       </router-link>
+      <router-link to="layout">
+        <v-btn icon>
+          <v-icon>insert_chart</v-icon>
+        </v-btn>
+      </router-link>
     </v-toolbar>
     <v-content>
       <v-container fluid fill-height>
