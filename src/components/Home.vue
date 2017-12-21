@@ -53,6 +53,8 @@
 import VueMarkdown from 'vue-markdown'
 import testmd from '../markdown/home.md'
 import schedule from './schedule.json'
+import marked from 'marked'
+
 export default {
     data() {
         return {
@@ -76,6 +78,14 @@ export default {
             }
             return cnt;
         }
+    },
+    mounted() {
+        let url = "http://localhost:3000/markdown/1"
+        let self = this;
+        this.$http.get(url)
+                .then((data) => {
+                    self.text = marked(data.data);
+                })
     },
     components: {
         VueMarkdown
