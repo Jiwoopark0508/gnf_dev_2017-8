@@ -13,14 +13,20 @@
         <v-flex d-flex xs3> <!-- Live board -->
             <v-card dark>
                 <v-toolbar color="indigo" dark app>
-                    <v-toolbar-title>Live</v-toolbar-title>
+                    <v-toolbar-title v-if="isLive(items[event_idx])">
+                        Live
+                    </v-toolbar-title>
+                    <v-toolbar-title v-else>
+                        Next
+                    </v-toolbar-title>
                 </v-toolbar>
                 <v-card-text v-if="isLive(items[event_idx])">
                     {{ items[event_idx].program }}
                 </v-card-text>
                 <v-card-text v-else>
-                    이어서 <br/>
                     <i>{{items[event_idx + 1].program}}</i>
+                    <br/>
+                    by {{items[event_idx + 1].speaker}} 님
                     <br/>
                     from {{ next_time }}
                 </v-card-text>
