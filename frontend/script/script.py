@@ -8,8 +8,10 @@ scheudles = {}
 with io.open(jsonPath, encoding="utf-8") as f:
     schedules = json.load(f)
     for schedule in schedules:
-        schedule["formattedDate"] = schedule["date"][:-3] + " " +\
+        schedule["formattedStartTime"] = schedule["date"][:-3] + " " +\
                                      schedule["time"][:5]
+        schedule["formattedEndTime"] = schedule["date"][:-3] + " " +\
+                                     schedule["time"][-5:]
 
 with io.open(jsonPath, "w", encoding="utf-8") as f:
     json.dump(schedules, f, ensure_ascii=False)

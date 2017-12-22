@@ -9,8 +9,8 @@ import axios from 'axios';
 import moment from 'moment-timezone';
 import VueMomentJS from "vue-momentjs";
  
+moment.tz.setDefault('Asia/Seoul');
 Vue.use(VueMomentJS, moment);
-moment.tz.setDefault('UTC');
 
 Vue.prototype.$http = axios;
 

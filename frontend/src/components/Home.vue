@@ -3,20 +3,23 @@
     <v-layout
         row wrap
     >
-        <v-flex xs10>
+        <v-flex xs10> <!-- Description -->
             <v-card dark class="pa-1">
                 <v-card-text v-html="text">
                     {{text}}
                 </v-card-text>
             </v-card>
         </v-flex>
-        <v-flex xs2>
+        <v-flex xs2> <!-- Live board -->
             <v-card dark>
                 <v-toolbar color="indigo" dark app>
-                    <v-toolbar-title>Upcoming Event</v-toolbar-title>
+                    <v-toolbar-title>Live</v-toolbar-title>
                 </v-toolbar>
-                <v-card-text>
-                    {{ event_now }}
+                <v-card-text v-if="isLive(items[event_idx])">
+                    {{ items[event_idx].program }}
+                </v-card-text>
+                <v-card-text v-else>
+                    쉬는 시간
                 </v-card-text>
             </v-card>
         </v-flex>
@@ -26,6 +29,9 @@
                 <v-toolbar color="indigo" dark app>
                     <v-toolbar-title>Workshop Schedule</v-toolbar-title>
                 </v-toolbar>
+                <v-card-text>
+                    Now : {{ items[event_idx].program }}
+                </v-card-text>
                 <table class="pa-3 bordered">
                     <thead>
                         <tr >
@@ -80,27 +86,16 @@ export default {
         }
     },
     computed: {
-        event_now: function() {
-            let now = this.$moment("2017-12-22 12:59");
-            let elem;
-            for(let i = 0; i < this.items.length; i++) {
-                elem = this.items[i];
-                if(now.diff(this.$moment(elem.formattedDate, "YYYY-MM-DD HH:mm")) < 0) {
-                    return elem;
-                }
-            }
-            return elem;
-        },
-        event_next: function() {
+        event_idx: function() {
             let now = this.$moment();
             let elem;
-            for(let i = 0; i < this.items.length; i++) {
-                elem = this.items[i];
-                if(this.$moment(elem.formattedDate, "YYYY-MM-DD HH:mm") < 0) {
-                    return elem;
+            for(let idx = 0; idx < this.items.length; idx++) {
+                elem = this.items[idx];
+                if(now.diff(this.$moment(elem.formattedDate, "YYYY-MM-DD HH:mm")) < 0) {
+                    return idx;
                 }
             }
-            return elem;
+            return idx;
         }
     },
     methods: {
@@ -110,6 +105,13 @@ export default {
                 if (target.dateid == this.items[i].dateid) cnt ++;
             }
             return cnt;
+        },
+        isLive(program) {
+            let now = this.$moment();
+            let startTime = this.$moment(program.formattedStartTime, "YYYY-MM-DD HH:mm")
+            let endTime = this.$moment(program.formattedEndTime, "YYYY-MM-DD HH:mm")
+            let inRange = startTime.diff(now) < 0 && now.diff(endTime) < 0
+            return inRange ? true : false;
         }
     },
     mounted() {
