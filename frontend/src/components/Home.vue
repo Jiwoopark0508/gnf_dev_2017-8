@@ -3,10 +3,20 @@
     <v-layout
         row wrap
     >
-        <v-flex xs12>
+        <v-flex xs10>
             <v-card dark class="pa-1">
                 <v-card-text v-html="text">
                     {{text}}
+                </v-card-text>
+            </v-card>
+        </v-flex>
+        <v-flex xs2>
+            <v-card dark>
+                <v-toolbar color="indigo" dark app>
+                    <v-toolbar-title>Upcoming Event</v-toolbar-title>
+                </v-toolbar>
+                <v-card-text>
+                    {{ event_now }}
                 </v-card-text>
             </v-card>
         </v-flex>
@@ -51,14 +61,13 @@
 
 <script>
 import VueMarkdown from 'vue-markdown'
-import testmd from '../markdown/home.md'
 import schedule from './schedule.json'
 import marked from 'marked'
 
 export default {
     data() {
         return {
-            text: testmd,
+            text: "",
             headers: [
                 { text: 'Date', align: 'left', value: 'date', sortable: false, id:1, isHidden:false },
                 { text: 'Time', align: 'right', value: 'time',sortable: false, id:2, isHidden:false },
@@ -68,6 +77,30 @@ export default {
                 { text: 'Etc', align: 'right',value: 'etc',sortable: false, id:6, isHidden:true },
             ],
             items: schedule
+        }
+    },
+    computed: {
+        event_now: function() {
+            let now = this.$moment("2017-12-22 12:59");
+            let elem;
+            for(let i = 0; i < this.items.length; i++) {
+                elem = this.items[i];
+                if(now.diff(this.$moment(elem.formattedDate, "YYYY-MM-DD HH:mm")) < 0) {
+                    return elem;
+                }
+            }
+            return elem;
+        },
+        event_next: function() {
+            let now = this.$moment();
+            let elem;
+            for(let i = 0; i < this.items.length; i++) {
+                elem = this.items[i];
+                if(this.$moment(elem.formattedDate, "YYYY-MM-DD HH:mm") < 0) {
+                    return elem;
+                }
+            }
+            return elem;
         }
     },
     methods: {
@@ -80,12 +113,12 @@ export default {
         }
     },
     mounted() {
-        let url = "http://localhost:3000/markdown/1"
+        let url = "http://localhost:3000/markdown"
         let self = this;
         this.$http.get(url)
                 .then((data) => {
                     self.text = marked(data.data);
-                })
+                });
     },
     components: {
         VueMarkdown

@@ -1,23 +1,19 @@
 {
   "name": "gnf3_dev",
+  "description": "Dev Homepage",
   "version": "1.0.0",
+  "author": "jiwoo park <jiwoop.jj@gmail.com>",
   "private": true,
   "scripts": {
-    "frontend": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
     "deploy": "npm run server | npm run vue",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "backend": "pm2 start backend/bin/www --watch --name server",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
+    "server": "pm2 start backend/bin/www --watch --name server",
     "vue": "cross-env NODE_ENV=development pm2 start webpack-dev-server --name vue -- --open --hot"
   },
   "dependencies": {
-    "body-parser": "~1.18.2",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "^4.16.2",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5",
     "axios": "^0.17.1",
+    "express": "^4.16.2",
     "global": "^4.3.2",
     "html-loader": "^0.5.1",
     "markdown-loader": "^2.0.1",
@@ -32,8 +28,6 @@
     "vue-router": "^3.0.1",
     "vuetify": "^0.17.4"
   },
-  "description": "Dev Homepage",
-  "author": "jiwoo park <jiwoop.jj@gmail.com>",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

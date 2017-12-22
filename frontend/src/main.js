@@ -4,11 +4,13 @@ import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 import routes from './routes.js'
 import 'vuetify/dist/vuetify.css'
-import moment from 'moment-timezone';
-import axios from 'axios';
 
-moment.tz.setDefault("UTC");
-Object.defineProperty(Vue.prototype, "$moment", { get() { return this.$root.moment }});;
+import axios from 'axios';
+import moment from 'moment-timezone';
+import VueMomentJS from "vue-momentjs";
+ 
+Vue.use(VueMomentJS, moment);
+moment.tz.setDefault('UTC');
 
 Vue.prototype.$http = axios;
 

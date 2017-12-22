@@ -3,14 +3,16 @@ var router = express.Router();
 var fs = require('fs');
 var path = require('path');
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
+  console.log("!");
   var filePath = path.join(__dirname, '/../public/markdowns/main.md');
   fs.readFile(filePath, 'utf8', (err, data) => {
     if(err) {
       console.log(err);
       res.sendStatus(500);
     }
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.send(data);
   });
 });
