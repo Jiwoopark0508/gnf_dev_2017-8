@@ -3,14 +3,14 @@
     <v-layout
         row wrap
     >   
-        <v-flex d-flex xs10> <!-- Description -->
+        <v-flex d-flex xs9> <!-- Description -->
             <v-card dark class="pa-1">
                 <v-card-text v-html="text">
                     {{text}}
                 </v-card-text>
             </v-card>
         </v-flex>
-        <v-flex d-flex xs2> <!-- Live board -->
+        <v-flex d-flex xs3> <!-- Live board -->
             <v-card dark>
                 <v-toolbar color="indigo" dark app>
                     <v-toolbar-title>Live</v-toolbar-title>
@@ -19,7 +19,10 @@
                     {{ items[event_idx].program }}
                 </v-card-text>
                 <v-card-text v-else>
-                    쉬는 시간
+                    이어서 <br/>
+                    <i>{{items[event_idx + 1].program}}</i>
+                    <br/>
+                    from {{ next_time }}
                 </v-card-text>
             </v-card>
         </v-flex>
@@ -99,6 +102,9 @@ export default {
                 }
             }
             return idx - 1;
+        },
+        next_time: function() {
+            return this.$moment(this.items[this.event_idx+1].formattedStartTime, "YYYY-MM-DD HH:mm").format("HH:mm");
         }
     },
     methods: {

@@ -1,5 +1,5 @@
 import Home from './components/Home.vue'
-import DataViz from './components/DataViz.vue'
+import DataViz from './components/Dataviz.vue'
 import Layout from './components/Layout.vue'
 
 export default [
