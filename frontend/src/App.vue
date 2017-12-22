@@ -1,23 +1,7 @@
  <template>
   <v-app id="inspire">
-    <v-toolbar color="indigo" dark>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      
-      <v-toolbar-title>
-        GNF 2017/2018
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <router-link to="/">
-        <v-btn icon>
-          <v-icon>home</v-icon>
-        </v-btn>
-      </router-link>
-      <router-link to="dataviz">
-        <v-btn icon>
-          <v-icon>insert_chart</v-icon>
-        </v-btn>
-      </router-link>
-    </v-toolbar>
+    <navbar></navbar>
+    <!-- Main Content from here -->
     <v-content>
       <v-container fluid fill-height>
         <v-layout
@@ -29,17 +13,14 @@
         </v-layout>
       </v-container>
     </v-content>
-    <v-footer color="indigo" app>
-      <span class="white--text">&copy;GNF 2017/8</span>
-      <v-spacer>
-        <span class="white--text right">Syllabus</span>
-      </v-spacer>
-    </v-footer>
+    <footer></footer>
   </v-app>
 </template>
 
 <script>
-  import VueMarkdown from 'vue-markdown'
+
+  import Navbar from './components/Navbar.vue'
+  import GNLFooter from './components/GNLFooter.vue'
 
   export default {
     data () {
@@ -58,7 +39,8 @@
       }
     },
     components: {
-      VueMarkdown
+      Navbar,
+      GNLFooter
     }
   }
 </script>

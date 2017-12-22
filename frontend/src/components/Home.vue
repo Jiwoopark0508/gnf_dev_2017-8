@@ -3,27 +3,32 @@
     <v-layout
         row wrap
     >   
-        <v-flex d-flex xs9> <!-- Description -->
+        <v-flex d-flex sm9 xs12> <!-- Description -->
             <v-card dark class="pa-1">
                 <v-card-text v-html="text">
                     {{text}}
                 </v-card-text>
             </v-card>
         </v-flex>
-        <v-flex d-flex xs3> <!-- Live board -->
-            <v-card dark>
-                <v-toolbar color="indigo" dark app>
-                    <v-toolbar-title v-if="isLive(items[event_idx])">
+        <v-flex d-flex sm3 xs12> <!-- Live board -->
+            <v-card v-if="isLive(items[event_idx])" dark>
+                <v-toolbar color="red" dark app>
+                    <v-toolbar-title class="text-xs-center">
                         Live
                     </v-toolbar-title>
-                    <v-toolbar-title v-else>
+                </v-toolbar>
+                <v-card-text >
+                    {{ items[event_idx].program }}<br/>
+                    by {{items[event_idx].speaker}} 님
+                </v-card-text>
+            </v-card>
+            <v-card v-else>
+                <v-toolbar color="indigo" dark app>
+                    <v-toolbar-title>
                         Next
                     </v-toolbar-title>
                 </v-toolbar>
-                <v-card-text v-if="isLive(items[event_idx])">
-                    {{ items[event_idx].program }}
-                </v-card-text>
-                <v-card-text v-else>
+                <v-card-text>
                     <i>{{items[event_idx + 1].program}}</i>
                     <br/>
                     by {{items[event_idx + 1].speaker}} 님
@@ -38,12 +43,6 @@
                 <v-toolbar color="indigo" dark app>
                     <v-toolbar-title>Workshop Schedule</v-toolbar-title>
                 </v-toolbar>
-                <v-card>
-                    <v-card-text>    
-                        Now : {{ items[event_idx].program }} 
-                        by {{ items[event_idx].speaker}}
-                    </v-card-text>
-                </v-card>
                 <table class="pa-3 bordered">
                     <thead>
                         <tr >
