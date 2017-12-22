@@ -2,7 +2,10 @@
   <v-app id="inspire">
     <v-toolbar color="indigo" dark>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>GNF 2017/2018</v-toolbar-title>
+      
+      <v-toolbar-title>
+        GNF 2017/2018
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <router-link to="/">
         <v-btn icon>
@@ -10,11 +13,6 @@
         </v-btn>
       </router-link>
       <router-link to="dataviz">
-        <v-btn icon>
-          <v-icon>insert_chart</v-icon>
-        </v-btn>
-      </router-link>
-      <router-link to="layout">
         <v-btn icon>
           <v-icon>insert_chart</v-icon>
         </v-btn>

@@ -1,16 +1,16 @@
 <template>
-<v-container grid-list-xl fluid fill-height>
+<v-container grid-list-md fluid fill-height>
     <v-layout
         row wrap
-    >
-        <v-flex xs10> <!-- Description -->
+    >   
+        <v-flex d-flex xs10> <!-- Description -->
             <v-card dark class="pa-1">
                 <v-card-text v-html="text">
                     {{text}}
                 </v-card-text>
             </v-card>
         </v-flex>
-        <v-flex xs2> <!-- Live board -->
+        <v-flex d-flex xs2> <!-- Live board -->
             <v-card dark>
                 <v-toolbar color="indigo" dark app>
                     <v-toolbar-title>Live</v-toolbar-title>
@@ -29,9 +29,12 @@
                 <v-toolbar color="indigo" dark app>
                     <v-toolbar-title>Workshop Schedule</v-toolbar-title>
                 </v-toolbar>
-                <v-card-text>
-                    Now : {{ items[event_idx].program }}
-                </v-card-text>
+                <v-card>
+                    <v-card-text>    
+                        Now : {{ items[event_idx].program }} 
+                        by {{ items[event_idx].speaker}}
+                    </v-card-text>
+                </v-card>
                 <table class="pa-3 bordered">
                     <thead>
                         <tr >
@@ -44,8 +47,8 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="item in items" :key="item.id"
-                            :class="{odd : item.dateid % 2 != 0 }">
+                        <tr v-for="(item, idx) in items" :key="item.id"
+                            :class="{odd : item.dateid % 2 != 0, active: isLive(item) }">
                             <td v-if="item.isFirst" :rowspan="count_array(item)">
                                 {{item.date}} 
                             </td>
@@ -92,10 +95,10 @@ export default {
             for(let idx = 0; idx < this.items.length; idx++) {
                 elem = this.items[idx];
                 if(now.diff(this.$moment(elem.formattedDate, "YYYY-MM-DD HH:mm")) < 0) {
-                    return idx;
+                    return idx - 1;
                 }
             }
-            return idx;
+            return idx - 1;
         }
     },
     methods: {
@@ -141,5 +144,6 @@ code
     box-shadow: none
 .odd
     background: #f2f2f2
-
+.active
+    background: burlywood
 </style>
