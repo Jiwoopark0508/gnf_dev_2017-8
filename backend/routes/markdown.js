@@ -4,7 +4,6 @@ var fs = require('fs');
 var path = require('path');
 
 router.get('/', function(req, res, next) {
-  console.log("!");
   var filePath = path.join(__dirname, '/../public/markdowns/main.md');
   fs.readFile(filePath, 'utf8', (err, data) => {
     if(err) {
