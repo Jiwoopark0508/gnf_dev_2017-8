@@ -129,7 +129,7 @@ export default {
         }
     },
     mounted() {
-        let url = "http://localhost:3000/markdown"
+        let url = "/api/markdown"
         let self = this;
         this.$http.get(url)
                 .then((data) => {
