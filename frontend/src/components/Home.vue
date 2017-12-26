@@ -77,7 +77,6 @@
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown'
 import schedule from './schedule.json'
 import marked from 'marked'
 
@@ -129,7 +128,7 @@ export default {
         }
     },
     mounted() {
-        let url = "/api/markdown"
+        let url = "http://localhost:3000/markdown"
         let self = this;
         this.$http.get(url)
                 .then((data) => {
@@ -137,7 +136,6 @@ export default {
                 });
     },
     components: {
-        VueMarkdown
     }
 }
 </script>

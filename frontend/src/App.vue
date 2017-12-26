@@ -1,4 +1,4 @@
-<template>
+ <template>
   <v-app id="inspire">
     <navbar></navbar>
     <!-- Main Content from here -->
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+
   import Navbar from './components/Navbar.vue'
   import GNLFooter from './components/GNLFooter.vue'
 
@@ -45,14 +46,6 @@
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 table {
   width: 100%;
   display: table;
@@ -77,4 +70,5 @@ td, th {
   vertical-align: middle;
   border-radius: 2px;
 }
+
 </style>
