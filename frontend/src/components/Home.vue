@@ -55,7 +55,7 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="(item, idx) in items" :key="item.id"
+                        <tr v-for="(item) in items" :key="item.id"
                             :class="{odd : item.dateid % 2 != 0, active: isLive(item) }">
                             <td v-if="item.isFirst" :rowspan="count_array(item)">
                                 {{item.date}} 
@@ -99,13 +99,14 @@ export default {
         event_idx: function() {
             let now = this.$moment();
             let elem;
-            for(let idx = 0; idx < this.items.length; idx++) {
+            let idx = 0;
+            for(idx = 0; idx < this.items.length; idx++) {
                 elem = this.items[idx];
                 if(now.diff(this.$moment(elem.formattedDate, "YYYY-MM-DD HH:mm")) < 0) {
                     return idx - 1;
                 }
             }
-            return idx - 1;
+            return idx - 2;
         },
         next_time: function() {
             return this.$moment(this.items[this.event_idx+1].formattedStartTime, "YYYY-MM-DD HH:mm").format("HH:mm");
